@@ -29,7 +29,7 @@
                    {{-- udh login --}}
                     @if (Auth::user()->role === 'user')
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Profil</a>
+                            <a class="nav-link" href="{{ route('profile') }}">Profil</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Blog</a>

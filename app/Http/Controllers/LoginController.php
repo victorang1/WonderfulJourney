@@ -14,8 +14,10 @@ class LoginController extends Controller
 
     public function login(Request $request) {
         $user = User::where('email', '=', $request->email)->first();
-        if ($user->role === $request->role) {
-            // coba login
+        if ($user === null) {
+            return redirect()->back()->withErrors(['User not found']);
+        }
+        else if ($user->role === $request->role) {
             if (Auth::attempt([
                 'email' => $request->email,
                 'password' => $request->password

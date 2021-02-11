@@ -29,3 +29,6 @@ Route::get('/viewUser', 'AdminController@showViewUser')->name('viewUser');
 Route::get('/viewAdmin', 'AdminController@showViewAdmin')->name('viewAdmin');
 
 Route::post('/deleteUser/{id}', 'AdminController@deleteUser')->name('deleteUser');
+
+Route::get('/profile', 'UserController@showProfileForm')->name('profile');
+Route::post('/profile', 'UserController@updateProfile')->name('updateProfile');
