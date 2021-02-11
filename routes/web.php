@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@showHome')->name('home');
 
 Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
 Route::post('/register', 'RegisterController@create')->name('register');
@@ -32,3 +30,11 @@ Route::post('/deleteUser/{id}', 'AdminController@deleteUser')->name('deleteUser'
 
 Route::get('/profile', 'UserController@showProfileForm')->name('profile');
 Route::post('/profile', 'UserController@updateProfile')->name('updateProfile');
+
+Route::get('/blog', 'ArticleController@showBlogs')->name('blog');
+Route::post('/deleteArticle/{id}', 'ArticleController@deleteArticle')->name('deleteArticle');
+
+Route::get('/createArticle', 'ArticleController@showCreateArticleForm')->name('createArticle');
+Route::post('/createArticle', 'ArticleController@createArticle')->name('createArticle');
+
+Route::get('/detailArticle/{id}', 'ArticleController@detail')->name('detailArticle');
