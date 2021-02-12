@@ -28,17 +28,17 @@
                 @auth
                     @if (Auth::user()->role === 'user')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('profile') }}">Profil</a>
+                            <a class="nav-link" href="{{ url('profile') }}">Profil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('blog') }}">Blog</a>
+                            <a class="nav-link" href="{{ url('blog') }}">Blog</a>
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('viewAdmin') }}">Admin</a>
+                            <a class="nav-link" href="{{ url('viewAdmin') }}">Admin</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('viewUser') }}">User</a>
+                            <a class="nav-link" href="{{ url('viewUser') }}">User</a>
                         </li>
                     @endif
                 @else
@@ -48,7 +48,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @foreach ($categories as $item)
-                                <a class="dropdown-item" href="#">{{ $item->name }}</a>
+                                <a class="dropdown-item" href="{{ route('category', ['category' => $item->name])}}">{{ $item->name }}</a>
                             @endforeach
                         </div>
                     </li>
@@ -59,7 +59,7 @@
             </ul>
             <div class="d-flex text-white">
                 @auth
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ url('logout') }}">
                         @csrf
                         <button type="submit" class="pointer nav-link btn btn-dark">
                             Logout

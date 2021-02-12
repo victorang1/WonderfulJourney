@@ -38,3 +38,5 @@ Route::get('/createArticle', 'ArticleController@showCreateArticleForm')->name('c
 Route::post('/createArticle', 'ArticleController@createArticle')->name('createArticle');
 
 Route::get('/detailArticle/{id}', 'ArticleController@detail')->name('detailArticle');
+
+Route::get('/category', 'HomeController@showCategory')->name('category');

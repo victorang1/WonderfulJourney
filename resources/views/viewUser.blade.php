@@ -15,7 +15,7 @@
                     <tr>
                         <td>{{ $u->name }}</td>
                         <td>{{ $u->email }}</td>
-                        <form method="POST" action="{{ route('deleteUser', $u->id) }}">
+                        <form method="POST" action="deleteUser/{{ $u->id }}">
                             @csrf
                             <td><button class="btn" type="submit">Delete</button></td>
                         </form>

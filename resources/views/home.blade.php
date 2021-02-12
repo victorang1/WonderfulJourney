@@ -6,13 +6,13 @@
         Welcome {{ Auth::user()->name }}
     @endauth
     @foreach ($articles as $a)
-        <a href="{{ route('detailArticle', $a->id) }}">
-            <div>
-                <h2>{{ $a->title }}</h2>
+        <div>
+            <h2>{{ $a->title }}</h2>
+            <a href="{{ route('detailArticle', $a->id) }}">
                 <div>{{ $a->description }}</div>
-                <span>Category: {{ $a->category->name }}</span>
-            </div>
-        </a>
+            </a>
+            <a href="{{ route('category', ['category' => $a->category->name])}}"><span>Category: {{ $a->category->name }}</span></a>
+        </div>
     @endforeach
     {{-- @if (session('success'))
         <div class="alert alert-success">
