@@ -1,22 +1,42 @@
 @extends('app')
 
+@section('app-style')
+    <style>
+        .item {
+            width: 30%;
+        }
+    </style>
+@endsection
+
 @section('content')
-    <div class="d-flex justify-content-center">
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($admins as $a)
-                    <tr>
-                        <td>{{ $a->name }}</td>
-                        <td>{{ $a->email }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+<div class="container mt-3">
+    @if (count($articles) == 0)
+        <h3>No articles found..</h3>
+    @else
+        <div class="d-flex flex-wrap">
+            @foreach ($articles as $article)
+                <div class="card d-flex flex-column p-3 m-2 item">
+                    <h2>{{ $article->title }}</h2>
+                    <div class="d-flex flex-column">
+                        <span style="height: 50px; overflow: hidden">
+                            @if (strlen($article->description) > 75)
+                                {{ substr($article->description, 0, 75) }} <a href="{{ route('detailArticle', $article->id) }}">...full story</a>
+                            @else
+                                {{ $article->description }}
+                            @endif
+                        </span>
+                    </div>
+                    <div>
+                        <i>Category :</i>
+                        <a href="{{ route('category', ['name' => $article->category->name]) }}">{{ $article->category->name }}</a>
+                    </div>
+                    <form method="POST" action="{{ route('deleteArticle', $article->id) }}">
+                        @csrf
+                        <td><button class="btn btn-outline-danger mt-2" type="submit">Delete</button></td>
+                    </form>
+                </div>
+            @endforeach
+        </div>
+    @endif
+</div>
 @endsection

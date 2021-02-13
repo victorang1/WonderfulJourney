@@ -19,6 +19,6 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->save();
-        return redirect('/')->with('success','Update Success');
+        return redirect()->route('home')->with('success', 'Update profile success');
     }
 }

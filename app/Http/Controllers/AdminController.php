@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Article;
 
 class AdminController extends Controller
 {
@@ -13,13 +14,13 @@ class AdminController extends Controller
     }
 
     public function showViewAdmin() {
-        $admins = User::where('role', 'admin')->get();
-        return view('viewAdmin')->with('admins', $admins);
+        $articles = Article::all();
+        return view('viewAdmin')->with('articles', $articles);
     }
 
     public function deleteUser($id) {
         $user = User::find($id);
         $user->delete();
-        return redirect('viewUser');
+        return redirect()->route('viewUser')->with('success', 'Delete user success');
     }
 }

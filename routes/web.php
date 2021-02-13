@@ -14,23 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@showHome')->name('home');
-
-Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
-Route::post('/register', 'RegisterController@create')->name('register');
-
 Route::get('/login', 'LoginController@showLoginForm')->name('login');
 Route::post('/login', 'LoginController@login')->name('login');
-
+Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
+Route::post('/register', 'RegisterController@create')->name('register');
 Route::post('/logout', 'LoginController@logout')->name('logout');
 
 Route::get('/viewUser', 'AdminController@showViewUser')->name('viewUser');
-Route::get('/viewAdmin', 'AdminController@showViewAdmin')->name('viewAdmin');
-
 Route::post('/deleteUser/{id}', 'AdminController@deleteUser')->name('deleteUser');
 
 Route::get('/profile', 'UserController@showProfileForm')->name('profile');
 Route::post('/profile', 'UserController@updateProfile')->name('updateProfile');
 
+Route::get('/viewAdmin', 'AdminController@showViewAdmin')->name('viewAdmin');
 Route::get('/blog', 'ArticleController@showBlogs')->name('blog');
 Route::post('/deleteArticle/{id}', 'ArticleController@deleteArticle')->name('deleteArticle');
 
@@ -40,3 +36,4 @@ Route::post('/createArticle', 'ArticleController@createArticle')->name('createAr
 Route::get('/detailArticle/{id}', 'ArticleController@detail')->name('detailArticle');
 
 Route::get('/category', 'HomeController@showCategory')->name('category');
+Route::get('/aboutUs', 'HomeController@showAboutUs')->name('aboutUs');

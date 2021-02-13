@@ -17,8 +17,7 @@ class ArticleController extends Controller
     public function deleteArticle($id) {
         $article = Article::find($id);
         $article->delete();
-
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Delete article success');
     }
     
     public function showCreateArticleForm() {
@@ -26,21 +25,20 @@ class ArticleController extends Controller
     }
 
     public function createArticle(Request $request) {
-
         $image = $request->file('photo');
         $path = public_path().'/article';
         $fileName = time().'-'.$image->getClientOriginalName();
         $image->move($path, $fileName);
 
-        Article::create([
-            'user_id' => Auth::id(),
-            'category_id' => $request['category'],
-            'title' => $request['title'],
-            'description' => $request['story'],
-            'image' => $fileName
-        ]);
+        $article = new Article;
+        $article->user_id = Auth::id();
+        $article->category_id = $request->category;
+        $article->title = $request->title;
+        $article->description = $request->story;
+        $article->image = $fileName;
+        $article->save();
 
-        return redirect()->route('blog')->with('success', 'Create Article Success');
+        return redirect()->route('blog')->with('success', 'Create article success');
     }
 
     public function detail($id) {

@@ -13,8 +13,12 @@ class HomeController extends Controller
         return view('home')->with('articles', $articles);
     }
 
+    public function showAboutUs() {
+        return view('aboutUs');
+    }
+
     public function showCategory(Request $request) {
-        $selectedCategory = $request->category;
+        $selectedCategory = $request->name;
         $category = Category::where('name', $selectedCategory)->first();
         $articles = Article::where('category_id', $category->id)->get();
         return view('category')->with('articles', $articles);

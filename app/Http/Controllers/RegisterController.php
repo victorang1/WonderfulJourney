@@ -26,9 +26,7 @@ class RegisterController extends Controller
             'role' => 'user',
             'remember_token' => $request['_token']
         ]);
-
         auth()->login($user);
-
-        return redirect('/');
+        return redirect()->route('home')->with('success', 'Register success');
     }
 }
