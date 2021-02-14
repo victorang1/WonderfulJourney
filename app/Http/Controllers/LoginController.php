@@ -19,9 +19,7 @@ class LoginController extends Controller
 
     public function login(Request $request) {
         $user = User::where('email', '=', $request->email)->first();
-        if ($user === null) {
-            return redirect()->back()->withErrors(['User not found']);
-        }
+        if ($user === null) return redirect()->back()->withErrors(['User not found']);
         else if ($user->role === $request->role) {
             if (Auth::attempt([
                 'email' => $request->email,
@@ -29,13 +27,8 @@ class LoginController extends Controller
             ], false)) {
                 return redirect()->intended('/');
             }
-            else {
-                return redirect()->back()->withErrors(['Incorrect Credentials']);
-            }
         }
-        else {
-            return redirect()->back()->withErrors(['Role doesn\'t match']);
-        }
+        return redirect()->back()->withErrors(['Incorrect Credentials']);
     }
 
     public function logout() {
